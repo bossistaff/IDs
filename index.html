@@ -739,7 +739,9 @@
             } else if (victoryLadderChecked) {
                 outputText = "$invite " + finalList.join(separator) + separator + '"Congratulations on winning a game of the Duo Victory Ladder!"';
             } else if (solosClosedChecked) {
-                outputText = "$si " + finalList.join(separator) + separator + '"Congratulations for placing top 5!"';
+                const topValue = prompt("What top?");
+                if (topValue === null) return;
+                outputText = "$si " + finalList.join(separator) + separator + `"Congratulations for placing ${topValue}!"`;
             } else {
                 outputText = finalList.join(separator);
             }
