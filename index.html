@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;600;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
             --primary: #5865F2;
@@ -36,7 +39,7 @@
         body {
             font-family: var(--font-main);
             background-color: var(--bg-dark);
-            background-image: 
+            background-image:
                 radial-gradient(circle at 0% 0%, rgba(88, 101, 242, 0.15) 0%, transparent 40%),
                 radial-gradient(circle at 100% 100%, rgba(0, 210, 255, 0.1) 0%, transparent 40%);
             color: var(--text-main);
@@ -58,8 +61,18 @@
             filter: blur(100px);
             opacity: 0.5;
         }
-        .blur-1 { top: -100px; right: -100px; background: var(--primary); }
-        .blur-2 { bottom: -100px; left: -100px; background: var(--accent); }
+
+        .blur-1 {
+            top: -100px;
+            right: -100px;
+            background: var(--primary);
+        }
+
+        .blur-2 {
+            bottom: -100px;
+            left: -100px;
+            background: var(--accent);
+        }
 
         /* Typography */
         h1 {
@@ -113,12 +126,12 @@
         }
 
         .nav-item:hover:not(.active) {
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-main);
         }
 
         .badge {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             padding: 2px 8px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -133,23 +146,43 @@
             border-radius: 24px;
             padding: 40px;
             backdrop-filter: var(--glass-blur);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
             margin-bottom: 80px;
             animation: fadeIn 0.6s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Controls & Form Elements */
-        .page { display: none; }
-        .page.active { display: block; animation: slideIn 0.4s ease-out; }
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+            animation: slideIn 0.4s ease-out;
+        }
 
         @keyframes slideIn {
-            from { opacity: 0; transform: translateX(10px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         .field-group {
@@ -169,7 +202,7 @@
 
         textarea {
             width: 100%;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             border: 1px solid var(--card-border);
             border-radius: 14px;
             padding: 16px;
@@ -195,7 +228,7 @@
         }
 
         .stat-card {
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--card-border);
             padding: 16px;
             border-radius: 16px;
@@ -242,14 +275,37 @@
             min-width: 140px;
         }
 
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
 
-        .btn-secondary { background: rgba(255,255,255,0.08); color: white; }
-        .btn-secondary:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+        }
 
-        .btn-danger { background: rgba(255, 71, 87, 0.15); color: var(--danger); border: 1px solid rgba(255, 71, 87, 0.2); }
-        .btn-danger:hover { background: var(--danger); color: white; transform: translateY(-2px); }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: rgba(255, 71, 87, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(255, 71, 87, 0.2);
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+            transform: translateY(-2px);
+        }
 
         /* Output Box */
         .output-container {
@@ -266,7 +322,7 @@
         }
 
         .output-box {
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
             border: 1px solid var(--card-border);
             border-radius: 16px;
             padding: 20px;
@@ -349,7 +405,7 @@
         /* Drop Area */
         .drop-area {
             border: 2px dashed var(--card-border);
-            background: rgba(255,255,255,0.02);
+            background: rgba(255, 255, 255, 0.02);
             border-radius: 16px;
             padding: 30px;
             text-align: center;
@@ -359,7 +415,8 @@
             margin-bottom: 24px;
         }
 
-        .drop-area:hover, .drop-area.drag-over {
+        .drop-area:hover,
+        .drop-area.drag-over {
             border-color: var(--primary);
             background: rgba(88, 101, 242, 0.05);
             color: var(--primary);
@@ -396,23 +453,37 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             transform: translateX(120%);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 1000;
         }
 
-        .toast.show { transform: translateX(0); }
+        .toast.show {
+            transform: translateX(0);
+        }
 
         /* Responsive */
         @media (max-width: 600px) {
-            .container { padding: 20px; }
-            h1 { font-size: 1.8rem; }
-            .btn-group { flex-direction: column; }
-            .btn-group button { width: 100%; }
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
+
+            .btn-group button {
+                width: 100%;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="ambient-blur blur-1"></div>
     <div class="ambient-blur blur-2"></div>
@@ -446,12 +517,14 @@
 
             <div class="field-group">
                 <label>Input IDs</label>
-                <textarea id="idInput" placeholder="Paste Discord IDs (one per line or comma-separated)..." style="height: 180px;"></textarea>
+                <textarea id="idInput" placeholder="Paste Discord IDs (one per line or comma-separated)..."
+                    style="height: 180px;"></textarea>
             </div>
 
             <div class="field-group">
                 <label>IDs to Exclude</label>
-                <textarea id="excludeInput" placeholder="These IDs will be removed from the result..." style="height: 80px;"></textarea>
+                <textarea id="excludeInput" placeholder="These IDs will be removed from the result..."
+                    style="height: 80px;"></textarea>
             </div>
 
             <div class="stats-grid">
@@ -468,11 +541,16 @@
             <div class="options-row">
                 <label class="option-item"><input type="checkbox" id="sortDesc"> Sort Descending</label>
                 <label class="option-item"><input type="checkbox" id="newlineOutput"> One ID per line</label>
-                <label class="option-item"><input type="checkbox" id="top5Output" onchange="handleExclusiveCheckboxes(this)"> Top5</label>
-                <label class="option-item"><input type="checkbox" id="ladderOutput" onchange="handleExclusiveCheckboxes(this)"> Ladder</label>
-                <label class="option-item"><input type="checkbox" id="victoryLadderOutput" onchange="handleExclusiveCheckboxes(this)"> Victory Ladder</label>
-                <label class="option-item"><input type="checkbox" id="solosClosedOutput" onchange="handleExclusiveCheckboxes(this)"> Solos Closed</label>
-                <label class="option-item"><input type="checkbox" id="mentionOutput" onchange="handleExclusiveCheckboxes(this)"> Menziona</label>
+                <label class="option-item"><input type="checkbox" id="top5Output"
+                        onchange="handleExclusiveCheckboxes(this)"> Top5</label>
+                <label class="option-item"><input type="checkbox" id="ladderOutput"
+                        onchange="handleExclusiveCheckboxes(this)"> Ladder</label>
+                <label class="option-item"><input type="checkbox" id="victoryLadderOutput"
+                        onchange="handleExclusiveCheckboxes(this)"> Victory Ladder</label>
+                <label class="option-item"><input type="checkbox" id="solosClosedOutput"
+                        onchange="handleExclusiveCheckboxes(this)"> Solos Closed</label>
+                <label class="option-item"><input type="checkbox" id="mentionOutput"
+                        onchange="handleExclusiveCheckboxes(this)"> Mention</label>
             </div>
 
             <div class="btn-group">
@@ -559,11 +637,13 @@
                     <span>🛡️ Backup & Restore</span>
                 </div>
                 <p style="font-size: 0.9rem; color: var(--text-dim); margin-bottom: 20px;">
-                    Download a copy of your "Level 30" data so you can restore it on another browser or after clearing browsing data.
+                    Download a copy of your "Level 30" data so you can restore it on another browser or after clearing
+                    browsing data.
                 </p>
                 <div class="btn-group">
                     <button class="btn btn-secondary" onclick="exportData()">Export Backup (.json)</button>
-                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Import Backup</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('importFile').click()">Import
+                        Backup</button>
                     <input type="file" id="importFile" hidden accept=".json" onchange="importData(event)">
                 </div>
             </div>
@@ -573,7 +653,8 @@
                 <p style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 15px;">
                     This action will permanently delete all Level 30 history.
                 </p>
-                <button class="btn btn-danger" style="flex: none; min-width: 200px;" onclick="pulisciArchivio()">Reset Complete Archive</button>
+                <button class="btn btn-danger" style="flex: none; min-width: 200px;" onclick="pulisciArchivio()">Reset
+                    Complete Archive</button>
             </div>
         </div>
     </div>
@@ -613,23 +694,23 @@
         function switchPage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-            
+
             document.getElementById('page-' + pageId).classList.add('active');
-            
+
             // Highlight active nav item
             const items = document.querySelectorAll('.nav-item');
             if (pageId === 'standard') items[0].classList.add('active');
             if (pageId === 'level30') items[1].classList.add('active');
             if (pageId === 'settings') items[2].classList.add('active');
 
-            if(pageId === 'level30') updateLevel30Stats();
+            if (pageId === 'level30') updateLevel30Stats();
         }
 
         /* --- LEVEL 30 LOGIC --- */
         function getLevel30History() {
             try {
                 return JSON.parse(localStorage.getItem('level30_history') || '[]');
-            } catch(e) { return []; }
+            } catch (e) { return []; }
         }
 
         function saveLevel30History(history) {
@@ -646,7 +727,7 @@
         function elaboraLevel30() {
             const input = document.getElementById('idInput30').value;
             const ids = input.split(/[\s,]+/).map(id => id.trim()).filter(id => /^\d+$/.test(id));
-            
+
             if (ids.length === 0) {
                 showToast("Please enter at least one valid ID", "warning");
                 return;
@@ -656,7 +737,7 @@
             const uniciInput = [...new Set(ids)];
             const giaVisti = uniciInput.filter(id => history.includes(id));
             const nuovi = uniciInput.filter(id => !history.includes(id));
-            
+
             if (document.getElementById('sortDesc30').checked) {
                 nuovi.sort((a, b) => b - a);
             }
@@ -665,7 +746,7 @@
             const outputSection = document.getElementById('outputSection30');
             const excludedBox = document.getElementById('excludedOutput30');
             const excludedSection = document.getElementById('excludedSection30');
-            
+
             outputBox.textContent = document.getElementById('newlineOutput30').checked ? nuovi.join('\n') : nuovi.join(' ');
             outputSection.style.display = 'block';
 
@@ -710,7 +791,7 @@
         function riordinaID() {
             const text = document.getElementById('idInput').value;
             const { unici, duplicates, validi } = parseIDs(text);
-            
+
             if (validi.length === 0) {
                 showToast("No valid IDs found", "warning");
                 return;
@@ -728,7 +809,7 @@
             const victoryLadderChecked = document.getElementById('victoryLadderOutput').checked;
             const solosClosedChecked = document.getElementById('solosClosedOutput').checked;
             const mentionChecked = document.getElementById('mentionOutput').checked;
-            
+
             let separator = document.getElementById('newlineOutput').checked ? '\n' : ' ';
             let outputText = "";
 
@@ -743,7 +824,7 @@
             } else if (solosClosedChecked) {
                 const topValue = prompt("What top?");
                 if (topValue === null) return;
-                outputText = "$si " + finalList.join(separator) + separator + `"Congratulations for placing ${topValue}!"`;
+                outputText = "$si " + finalList.join(separator) + separator + `"Congratulations on placing ${topValue}!"`;
             } else if (mentionChecked) {
                 outputText = finalList.map(id => `<@${id}>`).join(separator);
             } else {
@@ -753,10 +834,10 @@
             const output = document.getElementById('output');
             output.textContent = outputText;
             document.getElementById('outputSection').style.display = 'block';
-            
+
             document.getElementById('count').textContent = validi.length;
             document.getElementById('duplicates').textContent = duplicates;
-            
+
             showToast("Processing completed");
         }
 
@@ -796,11 +877,11 @@
             document.getElementById('idInput30').value = '';
             document.getElementById('output30').textContent = '';
             document.getElementById('outputSection30').style.display = 'none';
-            
+
             const excludedBox = document.getElementById('excludedOutput30');
-            if(excludedBox) excludedBox.textContent = '';
+            if (excludedBox) excludedBox.textContent = '';
             const excludedSection = document.getElementById('excludedSection30');
-            if(excludedSection) excludedSection.style.display = 'none';
+            if (excludedSection) excludedSection.style.display = 'none';
 
             document.getElementById('count30').textContent = '0';
             document.getElementById('historyRemoved30').textContent = '0';
@@ -816,7 +897,7 @@
             const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url; a.download = `backup_discord_ids_${new Date().toLocaleDateString().replace(/\//g,'-')}.json`;
+            a.href = url; a.download = `backup_discord_ids_${new Date().toLocaleDateString().replace(/\//g, '-')}.json`;
             a.click(); URL.revokeObjectURL(url);
             showToast("Backup exported");
         }
@@ -835,7 +916,7 @@
                         showToast(`Successfully imported ${data.level30_history.length} IDs!`);
                         updateLevel30Stats();
                     } else { throw new Error(); }
-                } catch(err) {
+                } catch (err) {
                     showToast("Error in backup file format", "danger");
                 }
             };
@@ -891,4 +972,5 @@
         updateLevel30Stats();
     </script>
 </body>
+
 </html>
