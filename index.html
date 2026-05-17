@@ -472,6 +472,7 @@
                 <label class="option-item"><input type="checkbox" id="ladderOutput" onchange="handleExclusiveCheckboxes(this)"> Ladder</label>
                 <label class="option-item"><input type="checkbox" id="victoryLadderOutput" onchange="handleExclusiveCheckboxes(this)"> Victory Ladder</label>
                 <label class="option-item"><input type="checkbox" id="solosClosedOutput" onchange="handleExclusiveCheckboxes(this)"> Solos Closed</label>
+                <label class="option-item"><input type="checkbox" id="mentionOutput" onchange="handleExclusiveCheckboxes(this)"> Menziona</label>
             </div>
 
             <div class="btn-group">
@@ -689,7 +690,7 @@
         /* --- STANDARD LOGIC --- */
         function handleExclusiveCheckboxes(checkbox) {
             if (checkbox.checked) {
-                const ids = ['top5Output', 'ladderOutput', 'victoryLadderOutput', 'solosClosedOutput'];
+                const ids = ['top5Output', 'ladderOutput', 'victoryLadderOutput', 'solosClosedOutput', 'mentionOutput'];
                 ids.forEach(id => {
                     if (id !== checkbox.id) {
                         const el = document.getElementById(id);
@@ -726,6 +727,7 @@
             const ladderChecked = document.getElementById('ladderOutput').checked;
             const victoryLadderChecked = document.getElementById('victoryLadderOutput').checked;
             const solosClosedChecked = document.getElementById('solosClosedOutput').checked;
+            const mentionChecked = document.getElementById('mentionOutput').checked;
             
             let separator = document.getElementById('newlineOutput').checked ? '\n' : ' ';
             let outputText = "";
@@ -742,6 +744,8 @@
                 const topValue = prompt("What top?");
                 if (topValue === null) return;
                 outputText = "$si " + finalList.join(separator) + separator + `"Congratulations for placing ${topValue}!"`;
+            } else if (mentionChecked) {
+                outputText = finalList.map(id => `<@${id}>`).join(separator);
             } else {
                 outputText = finalList.join(separator);
             }
@@ -785,6 +789,7 @@
             document.getElementById('ladderOutput').checked = false;
             document.getElementById('victoryLadderOutput').checked = false;
             document.getElementById('solosClosedOutput').checked = false;
+            document.getElementById('mentionOutput').checked = false;
         }
 
         function resetta30() {
