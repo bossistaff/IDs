@@ -52,6 +52,94 @@
         }
 
         /* Ambient Background Blur Elements */
+        body.light-mode {
+            --bg-dark: #f0f2f5;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-border: rgba(0, 0, 0, 0.1);
+            --text-main: #1a1c23;
+            --text-dim: #4a5568;
+        }
+
+        body.light-mode .output-box,
+        body.light-mode textarea {
+            background: rgba(0, 0, 0, 0.05);
+            color: #1a1c23;
+        }
+
+        body.light-mode h1 {
+            background: linear-gradient(135deg, #1a1c23 0%, #4a5568 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .main-title {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin-top: 40px;
+            margin-bottom: 10px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff 0%, var(--primary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.4));
+            animation: titlePulse 3s infinite alternate;
+        }
+
+        @keyframes titlePulse {
+            from {
+                filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.4));
+            }
+
+            to {
+                filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.6));
+            }
+        }
+
+        body.light-mode .main-title {
+            background: linear-gradient(135deg, #1a1c23 0%, var(--primary) 50%, #4a5568 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+            animation: none;
+        }
+
+        .logs-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .log-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--card-border);
+            padding: 16px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .log-time {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .log-details {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Ambient Background Blur Elements */
         .ambient-blur {
             position: fixed;
             width: 400px;
@@ -146,9 +234,27 @@
             border-radius: 24px;
             padding: 40px;
             backdrop-filter: var(--glass-blur);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
             margin-bottom: 80px;
             animation: fadeIn 0.6s ease-out;
+            position: relative;
+        }
+
+        body.light-mode .container {
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%, rgba(255, 255, 255, 0.05));
+            z-index: -1;
+            border-radius: 25px;
+            pointer-events: none;
         }
 
         @keyframes fadeIn {
@@ -273,6 +379,10 @@
             gap: 8px;
             flex: 1;
             min-width: 140px;
+        }
+
+        button.btn:active {
+            transform: scale(0.96);
         }
 
         .btn-primary {
@@ -441,10 +551,17 @@
         }
 
         /* Notifications */
-        .toast {
+        .toast-container {
             position: fixed;
             top: 20px;
             right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .toast {
             background: #1a1c23;
             border: 1px solid var(--card-border);
             border-left: 4px solid var(--primary);
@@ -454,13 +571,85 @@
             align-items: center;
             gap: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-            transform: translateX(120%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 1000;
+            animation: slideInToast 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            opacity: 1;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
-        .toast.show {
-            transform: translateX(0);
+        .toast.hide {
+            opacity: 0;
+            transform: translateX(120%);
+        }
+
+        @keyframes slideInToast {
+            from {
+                transform: translateX(120%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        /* Scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Focus outlines */
+        *:focus-visible {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        /* Textarea Wrapper & Clear Button */
+        .textarea-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .btn-clear {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-dim);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: var(--transition);
+            opacity: 0;
+        }
+
+        .textarea-wrapper:hover .btn-clear,
+        .textarea-wrapper:focus-within .btn-clear {
+            opacity: 1;
+        }
+
+        .btn-clear:hover {
+            background: rgba(255, 71, 87, 0.8);
+            color: white;
         }
 
         /* Responsive */
@@ -493,7 +682,10 @@
         <button class="nav-item" onclick="switchPage('level30')">
             Level 30 <span id="historyCountBadge" class="badge">0</span>
         </button>
+        <button class="nav-item" onclick="switchPage('logs')">Logs</button>
         <button class="nav-item" onclick="switchPage('settings')">Settings</button>
+        <button class="nav-item" id="themeToggle" onclick="toggleTheme()" title="Toggle Light/Dark Mode"
+            style="margin-left: auto;">☀️</button>
     </div>
 
     <div class="container">
@@ -517,14 +709,20 @@
 
             <div class="field-group">
                 <label>Input IDs</label>
-                <textarea id="idInput" placeholder="Paste Discord IDs (one per line or comma-separated)..."
-                    style="height: 180px;"></textarea>
+                <div class="textarea-wrapper">
+                    <textarea id="idInput" placeholder="Paste Discord IDs (one per line or comma-separated)..."
+                        style="height: 180px;"></textarea>
+                    <button class="btn-clear" onclick="clearTextarea('idInput')" title="Clear">✖</button>
+                </div>
             </div>
 
             <div class="field-group">
                 <label>IDs to Exclude</label>
-                <textarea id="excludeInput" placeholder="These IDs will be removed from the result..."
-                    style="height: 80px;"></textarea>
+                <div class="textarea-wrapper">
+                    <textarea id="excludeInput" placeholder="These IDs will be removed from the result..."
+                        style="height: 80px;"></textarea>
+                    <button class="btn-clear" onclick="clearTextarea('excludeInput')" title="Clear">✖</button>
+                </div>
             </div>
 
             <div class="stats-grid">
@@ -538,6 +736,16 @@
                 </div>
             </div>
 
+            <div class="options-row">
+                <label class="option-item" style="flex: 1; min-width: 120px;">
+                    <input type="text" id="customPrefix" placeholder="Custom Prefix (e.g. /ban )"
+                        style="width:100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main);">
+                </label>
+                <label class="option-item" style="flex: 1; min-width: 120px;">
+                    <input type="text" id="customSuffix" placeholder="Custom Suffix"
+                        style="width:100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main);">
+                </label>
+            </div>
             <div class="options-row">
                 <label class="option-item"><input type="checkbox" id="sortDesc"> Sort Descending</label>
                 <label class="option-item"><input type="checkbox" id="newlineOutput"> One ID per line</label>
@@ -583,7 +791,10 @@
 
             <div class="field-group">
                 <label>Paste New IDs</label>
-                <textarea id="idInput30" placeholder="Add new IDs to process..." style="height: 180px;"></textarea>
+                <div class="textarea-wrapper">
+                    <textarea id="idInput30" placeholder="Add new IDs to process..." style="height: 180px;"></textarea>
+                    <button class="btn-clear" onclick="clearTextarea('idInput30')" title="Clear">✖</button>
+                </div>
             </div>
 
             <div class="stats-grid">
@@ -627,6 +838,17 @@
             </div>
         </div>
 
+        <!-- PAGE: LOGS -->
+        <div id="page-logs" class="page">
+            <h1>Session Logs</h1>
+            <p class="subtitle">History of processed lists during this session.</p>
+
+            <div id="logsContainer" class="logs-list">
+                <div style="text-align: center; color: var(--text-dim); padding: 20px;">No logs yet. Process some IDs to
+                    see them here.</div>
+            </div>
+        </div>
+
         <!-- PAGE: SETTINGS -->
         <div id="page-settings" class="page">
             <h1>Data Management</h1>
@@ -659,39 +881,169 @@
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="toast">
-        <span id="toastIcon">✨</span>
-        <span id="toastMsg">Done!</span>
-    </div>
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
 
     <script>
         // State Management
+        let sessionLogs = [];
         let state = {
             activePage: 'standard'
         };
 
         // DOM Elements
-        const toast = document.getElementById('toast');
-        const toastMsg = document.getElementById('toastMsg');
+        const toastContainer = document.getElementById('toast-container');
         const historyBadge = document.getElementById('historyCountBadge');
+
+        /* --- STATE SAVING --- */
+        function saveState() {
+            const stateToSave = {
+                activePage: state.activePage,
+                standardOptions: {
+                    sortDesc: document.getElementById('sortDesc').checked,
+                    newlineOutput: document.getElementById('newlineOutput').checked,
+                    top5Output: document.getElementById('top5Output').checked,
+                    ladderOutput: document.getElementById('ladderOutput').checked,
+                    victoryLadderOutput: document.getElementById('victoryLadderOutput').checked,
+                    solosClosedOutput: document.getElementById('solosClosedOutput').checked,
+                    mentionOutput: document.getElementById('mentionOutput').checked
+                },
+                level30Options: {
+                    sortDesc30: document.getElementById('sortDesc30').checked,
+                    newlineOutput30: document.getElementById('newlineOutput30').checked
+                }
+            };
+            localStorage.setItem('admin_ids_state', JSON.stringify(stateToSave));
+        }
+
+        function loadState() {
+            if (localStorage.getItem('admin_ids_theme') === 'light') {
+                toggleTheme();
+            }
+            try {
+                const saved = JSON.parse(localStorage.getItem('admin_ids_state'));
+                if (saved) {
+                    if (saved.activePage) {
+                        switchPage(saved.activePage, false);
+                    }
+                    if (saved.standardOptions) {
+                        Object.keys(saved.standardOptions).forEach(key => {
+                            const el = document.getElementById(key);
+                            if (el) el.checked = saved.standardOptions[key];
+                        });
+                    }
+                    if (saved.level30Options) {
+                        Object.keys(saved.level30Options).forEach(key => {
+                            const el = document.getElementById(key);
+                            if (el) el.checked = saved.level30Options[key];
+                        });
+                    }
+                }
+            } catch (e) { }
+        }
+
+        function clearTextarea(id) {
+            document.getElementById(id).value = '';
+            document.getElementById(id).focus();
+        }
 
         /* --- COPY COMMAND --- */
         function copiaComandoRole() {
+            const el = event.currentTarget;
             navigator.clipboard.writeText("*role all -<@&951456227253170199>").then(() => {
                 showToast("Command copied to clipboard!", "success");
+                el.style.background = 'rgba(46, 204, 113, 0.2)';
+                el.style.borderColor = 'var(--success)';
+                setTimeout(() => {
+                    el.style.background = '';
+                    el.style.borderColor = '';
+                }, 2000);
             });
         }
 
         /* --- NOTIFICATIONS --- */
         function showToast(message, type = 'success') {
-            toastMsg.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 3000);
+            const toastEl = document.createElement('div');
+            toastEl.className = 'toast';
+            if (type === 'danger') toastEl.style.borderLeftColor = 'var(--danger)';
+            else if (type === 'warning') toastEl.style.borderLeftColor = 'var(--warning)';
+
+            const icon = type === 'success' ? '✨' : (type === 'danger' ? '⚠️' : 'ℹ️');
+
+            toastEl.innerHTML = `
+                <span>${icon}</span>
+                <span>${message}</span>
+            `;
+
+            toastContainer.appendChild(toastEl);
+
+            setTimeout(() => {
+                toastEl.classList.add('hide');
+                setTimeout(() => {
+                    toastEl.remove();
+                }, 300); // match transition duration
+            }, 3000);
+        }
+
+        /* --- THEME TOGGLE --- */
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('themeToggle').textContent = isLight ? '🌙' : '☀️';
+            localStorage.setItem('admin_ids_theme', isLight ? 'light' : 'dark');
+        }
+
+        /* --- LOGS --- */
+        function addLog(actionName, count, outputText) {
+            const entry = {
+                time: new Date().toLocaleTimeString(),
+                action: actionName,
+                count: count,
+                output: outputText
+            };
+            sessionLogs.unshift(entry);
+            renderLogs();
+        }
+
+        function renderLogs() {
+            const container = document.getElementById('logsContainer');
+            if (sessionLogs.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: var(--text-dim); padding: 20px;">No logs yet. Process some IDs to see them here.</div>';
+                return;
+            }
+
+            container.innerHTML = '';
+            sessionLogs.forEach((log, index) => {
+                const item = document.createElement('div');
+                item.className = 'log-item';
+                item.innerHTML = `
+                    <div class="log-info">
+                        <span class="log-time">${log.time}</span>
+                        <span class="log-details">${log.action} (${log.count} IDs)</span>
+                    </div>
+                    <button class="btn btn-secondary" style="min-width: 80px; padding: 8px 16px;" onclick="copyLogData(${index}, this)">Copy</button>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function copyLogData(index, btnEl) {
+            const text = sessionLogs[index].output;
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = btnEl.textContent;
+                btnEl.textContent = '✅ Copied';
+                btnEl.style.background = 'var(--success)';
+                btnEl.style.color = 'white';
+                setTimeout(() => {
+                    btnEl.textContent = originalText;
+                    btnEl.style.background = '';
+                    btnEl.style.color = '';
+                }, 2000);
+            });
         }
 
         /* --- NAVIGATION --- */
-        function switchPage(pageId) {
+        function switchPage(pageId, save = true) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
 
@@ -701,7 +1053,11 @@
             const items = document.querySelectorAll('.nav-item');
             if (pageId === 'standard') items[0].classList.add('active');
             if (pageId === 'level30') items[1].classList.add('active');
-            if (pageId === 'settings') items[2].classList.add('active');
+            if (pageId === 'logs') items[2].classList.add('active');
+            if (pageId === 'settings') items[3].classList.add('active');
+
+            state.activePage = pageId;
+            if (save) saveState();
 
             if (pageId === 'level30') updateLevel30Stats();
         }
@@ -762,6 +1118,7 @@
 
             if (nuovi.length > 0) {
                 saveLevel30History([...history, ...nuovi]);
+                addLog("Level 30 Filter", nuovi.length, outputBox.textContent);
                 showToast(`Filtered ${nuovi.length} new IDs.`);
             } else {
                 showToast("All IDs are already in the archive.");
@@ -779,6 +1136,7 @@
                     }
                 });
             }
+            saveState();
         }
 
         function parseIDs(text) {
@@ -813,6 +1171,15 @@
             let separator = document.getElementById('newlineOutput').checked ? '\n' : ' ';
             let outputText = "";
 
+            const prefix = document.getElementById('customPrefix').value.trim();
+            const suffix = document.getElementById('customSuffix').value.trim();
+
+            if (prefix || suffix) {
+                const pre = prefix ? prefix + " " : "";
+                const suf = suffix ? " " + suffix : "";
+                finalList = finalList.map(id => `${pre}${id}${suf}`);
+            }
+
             if (top5Checked) {
                 outputText = "$top5 " + finalList.join(separator);
             } else if (ladderChecked) {
@@ -826,7 +1193,13 @@
                 if (topValue === null) return;
                 outputText = "$si " + finalList.join(separator) + separator + `"Congratulations on placing ${topValue}!"`;
             } else if (mentionChecked) {
-                outputText = finalList.map(id => `<@${id}>`).join(separator);
+                outputText = finalList.map(id => `<@${id}>`).join(separator); // might conflict with pre/suf, but finalList is already updated above. We should map over finalList to keep pre/suf.
+                // Wait, if it's already updated, we can just join or map depending on mention.
+                outputText = finalList.map(id => {
+                    // if they used mention checkbox + custom prefix, it gets messy. We'll just wrap the whole thing if it doesn't already have mention.
+                    // Assuming they wouldn't use both, but if they do, we wrap the whole string.
+                    return `<@${id.replace(/<@|>/g, '')}>`;
+                }).join(separator);
             } else {
                 outputText = finalList.join(separator);
             }
@@ -838,14 +1211,25 @@
             document.getElementById('count').textContent = validi.length;
             document.getElementById('duplicates').textContent = duplicates;
 
+            addLog("Standard Processing", validi.length, outputText);
             showToast("Processing completed");
         }
 
         function copiaRisultato(elementId) {
             const text = document.getElementById(elementId).textContent.trim();
             if (!text) return;
+
+            const btn = event.currentTarget;
+            const originalText = btn.innerHTML;
+
             navigator.clipboard.writeText(text).then(() => {
                 showToast("Copied to clipboard!");
+                btn.innerHTML = "Copied! ✅";
+                btn.style.background = "var(--success)";
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = "";
+                }, 2000);
             });
         }
 
@@ -968,8 +1352,14 @@
             input.click();
         });
 
-        // Initialize Stats
+        // Initialize Stats & State
         updateLevel30Stats();
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', saveState);
+        });
+
+        loadState();
     </script>
 </body>
 
