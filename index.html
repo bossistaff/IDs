@@ -60,8 +60,7 @@
             --text-dim: #4a5568;
         }
 
-        body.light-mode .output-box,
-        body.light-mode textarea {
+        body.light-mode .output-box, body.light-mode textarea {
             background: rgba(0, 0, 0, 0.05);
             color: #1a1c23;
         }
@@ -87,22 +86,17 @@
             filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.4));
             animation: titlePulse 3s infinite alternate;
         }
-
+        
         @keyframes titlePulse {
-            from {
-                filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.4));
-            }
-
-            to {
-                filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.6));
-            }
+            from { filter: drop-shadow(0 0 15px rgba(88, 101, 242, 0.4)); }
+            to { filter: drop-shadow(0 0 30px rgba(0, 210, 255, 0.6)); }
         }
-
+        
         body.light-mode .main-title {
             background: linear-gradient(135deg, #1a1c23 0%, var(--primary) 50%, #4a5568 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
             animation: none;
         }
 
@@ -112,7 +106,7 @@
             gap: 12px;
             margin-top: 16px;
         }
-
+        
         .log-item {
             background: rgba(0, 0, 0, 0.2);
             border: 1px solid var(--card-border);
@@ -122,23 +116,22 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        
         .log-info {
             display: flex;
             flex-direction: column;
             gap: 4px;
         }
-
+        
         .log-time {
             font-size: 0.8rem;
             color: var(--text-dim);
         }
-
+        
         .log-details {
             font-weight: 600;
             color: var(--primary);
         }
-
         /* Ambient Background Blur Elements */
         .ambient-blur {
             position: fixed;
@@ -239,7 +232,7 @@
             animation: fadeIn 0.6s ease-out;
             position: relative;
         }
-
+        
         body.light-mode .container {
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(0, 0, 0, 0.05);
         }
@@ -247,11 +240,8 @@
         .container::before {
             content: '';
             position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent 50%, rgba(255, 255, 255, 0.05));
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent 50%, rgba(255,255,255,0.05));
             z-index: -1;
             border-radius: 25px;
             pointer-events: none;
@@ -582,13 +572,8 @@
         }
 
         @keyframes slideInToast {
-            from {
-                transform: translateX(120%);
-            }
-
-            to {
-                transform: translateX(0);
-            }
+            from { transform: translateX(120%); }
+            to { transform: translateX(0); }
         }
 
         /* Scrollbars */
@@ -596,17 +581,14 @@
             width: 8px;
             height: 8px;
         }
-
         ::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.2);
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 4px;
         }
-
         ::-webkit-scrollbar-thumb:hover {
             background: rgba(255, 255, 255, 0.3);
         }
@@ -622,7 +604,6 @@
             position: relative;
             width: 100%;
         }
-
         .btn-clear {
             position: absolute;
             top: 10px;
@@ -641,15 +622,110 @@
             transition: var(--transition);
             opacity: 0;
         }
-
         .textarea-wrapper:hover .btn-clear,
         .textarea-wrapper:focus-within .btn-clear {
             opacity: 1;
         }
-
         .btn-clear:hover {
             background: rgba(255, 71, 87, 0.8);
             color: white;
+        }
+
+        /* Color Splash */
+        .color-splash-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .canvas-wrapper {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            position: relative;
+        }
+        canvas {
+            max-width: 100%;
+            max-height: 60vh;
+            object-fit: contain;
+            cursor: crosshair;
+        }
+        .color-controls {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+        }
+        .color-picker-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+            min-width: 150px;
+        }
+        .color-picker-group input[type="color"] {
+            width: 100%;
+            height: 48px;
+            padding: 0;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+        }
+        .color-picker-group input[type="color"]::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .color-picker-group input[type="color"]::-webkit-color-swatch {
+            border: 2px solid var(--card-border);
+            border-radius: 8px;
+        }
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 2;
+            min-width: 200px;
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+        .color-preview {
+            width: 100%;
+            height: 48px;
+            border-radius: 8px;
+            border: 2px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            font-family: var(--font-main);
+        }
+        #emptyCanvasMsg {
+            position: absolute;
+            color: var(--text-dim);
+            pointer-events: none;
         }
 
         /* Responsive */
@@ -677,15 +753,17 @@
     <div class="ambient-blur blur-1"></div>
     <div class="ambient-blur blur-2"></div>
 
+
+
     <div class="nav-container">
         <button class="nav-item active" onclick="switchPage('standard')">Standard</button>
         <button class="nav-item" onclick="switchPage('level30')">
             Level 30 <span id="historyCountBadge" class="badge">0</span>
         </button>
+        <button class="nav-item" onclick="switchPage('colorsplash')">Color Splash</button>
         <button class="nav-item" onclick="switchPage('logs')">Logs</button>
         <button class="nav-item" onclick="switchPage('settings')">Settings</button>
-        <button class="nav-item" id="themeToggle" onclick="toggleTheme()" title="Toggle Light/Dark Mode"
-            style="margin-left: auto;">☀️</button>
+        <button class="nav-item" id="themeToggle" onclick="toggleTheme()" title="Toggle Light/Dark Mode" style="margin-left: auto;">☀️</button>
     </div>
 
     <div class="container">
@@ -738,12 +816,10 @@
 
             <div class="options-row">
                 <label class="option-item" style="flex: 1; min-width: 120px;">
-                    <input type="text" id="customPrefix" placeholder="Custom Prefix (e.g. /ban )"
-                        style="width:100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main);">
+                    <input type="text" id="customPrefix" placeholder="Custom Prefix (e.g. /ban )" style="width:100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main);">
                 </label>
                 <label class="option-item" style="flex: 1; min-width: 120px;">
-                    <input type="text" id="customSuffix" placeholder="Custom Suffix"
-                        style="width:100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main);">
+                    <input type="text" id="customSuffix" placeholder="Custom Suffix" style="width:100%; padding: 8px; border-radius: 8px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main);">
                 </label>
             </div>
             <div class="options-row">
@@ -838,14 +914,54 @@
             </div>
         </div>
 
+        <!-- PAGE: COLOR SPLASH -->
+        <div id="page-colorsplash" class="page">
+            <h1>Color Splash</h1>
+            <p class="subtitle">Magically replace specific colors in your photos.</p>
+
+            <div class="color-splash-container">
+                <div class="drop-area" id="csDropArea">
+                    <div style="font-size: 1.5rem; margin-bottom: 8px;">🖼️</div>
+                    Drag and drop an image here, or click to upload
+                    <input type="file" id="csFileInput" accept="image/*" hidden>
+                </div>
+
+                <div class="canvas-wrapper">
+                    <div id="emptyCanvasMsg">No image uploaded</div>
+                    <canvas id="csCanvas"></canvas>
+                </div>
+
+                <div class="color-controls">
+                    <div class="color-picker-group">
+                        <label>Target Color (Click image)</label>
+                        <div id="csSourcePreview" class="color-preview" style="background-color: #000000;">#000000</div>
+                    </div>
+                    <div class="color-picker-group">
+                        <label>Replacement Color</label>
+                        <input type="color" id="csReplaceColor" value="#5865F2">
+                    </div>
+                    <div class="slider-group">
+                        <label>Tolerance: <span id="csToleranceValue">50</span></label>
+                        <input type="range" id="csTolerance" min="0" max="255" value="50">
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="applyColorSplash()">Apply Splash</button>
+                    <button class="btn btn-secondary" onclick="resetColorSplashImage()">Reset Image</button>
+                    <button class="btn btn-secondary" onclick="downloadColorSplash()">Download</button>
+                    <button class="btn btn-danger" onclick="clearColorSplash()">Clear All</button>
+                </div>
+            </div>
+        </div>
+
         <!-- PAGE: LOGS -->
         <div id="page-logs" class="page">
             <h1>Session Logs</h1>
             <p class="subtitle">History of processed lists during this session.</p>
-
+            
             <div id="logsContainer" class="logs-list">
-                <div style="text-align: center; color: var(--text-dim); padding: 20px;">No logs yet. Process some IDs to
-                    see them here.</div>
+                <div style="text-align: center; color: var(--text-dim); padding: 20px;">No logs yet. Process some IDs to see them here.</div>
             </div>
         </div>
 
@@ -939,7 +1055,7 @@
                         });
                     }
                 }
-            } catch (e) { }
+            } catch(e) {}
         }
 
         function clearTextarea(id) {
@@ -969,7 +1085,7 @@
             else if (type === 'warning') toastEl.style.borderLeftColor = 'var(--warning)';
 
             const icon = type === 'success' ? '✨' : (type === 'danger' ? '⚠️' : 'ℹ️');
-
+            
             toastEl.innerHTML = `
                 <span>${icon}</span>
                 <span>${message}</span>
@@ -1011,7 +1127,7 @@
                 container.innerHTML = '<div style="text-align: center; color: var(--text-dim); padding: 20px;">No logs yet. Process some IDs to see them here.</div>';
                 return;
             }
-
+            
             container.innerHTML = '';
             sessionLogs.forEach((log, index) => {
                 const item = document.createElement('div');
@@ -1026,7 +1142,7 @@
                 container.appendChild(item);
             });
         }
-
+        
         function copyLogData(index, btnEl) {
             const text = sessionLogs[index].output;
             navigator.clipboard.writeText(text).then(() => {
@@ -1053,8 +1169,9 @@
             const items = document.querySelectorAll('.nav-item');
             if (pageId === 'standard') items[0].classList.add('active');
             if (pageId === 'level30') items[1].classList.add('active');
-            if (pageId === 'logs') items[2].classList.add('active');
-            if (pageId === 'settings') items[3].classList.add('active');
+            if (pageId === 'colorsplash') items[2].classList.add('active');
+            if (pageId === 'logs') items[3].classList.add('active');
+            if (pageId === 'settings') items[4].classList.add('active');
 
             state.activePage = pageId;
             if (save) saveState();
@@ -1170,10 +1287,10 @@
 
             let separator = document.getElementById('newlineOutput').checked ? '\n' : ' ';
             let outputText = "";
-
+            
             const prefix = document.getElementById('customPrefix').value.trim();
             const suffix = document.getElementById('customSuffix').value.trim();
-
+            
             if (prefix || suffix) {
                 const pre = prefix ? prefix + " " : "";
                 const suf = suffix ? " " + suffix : "";
@@ -1198,7 +1315,7 @@
                 outputText = finalList.map(id => {
                     // if they used mention checkbox + custom prefix, it gets messy. We'll just wrap the whole thing if it doesn't already have mention.
                     // Assuming they wouldn't use both, but if they do, we wrap the whole string.
-                    return `<@${id.replace(/<@|>/g, '')}>`;
+                    return `<@${id.replace(/<@|>/g, '')}>`; 
                 }).join(separator);
             } else {
                 outputText = finalList.join(separator);
@@ -1218,7 +1335,7 @@
         function copiaRisultato(elementId) {
             const text = document.getElementById(elementId).textContent.trim();
             if (!text) return;
-
+            
             const btn = event.currentTarget;
             const originalText = btn.innerHTML;
 
@@ -1352,9 +1469,163 @@
             input.click();
         });
 
+        /* --- COLOR SPLASH LOGIC --- */
+        let csOriginalImageData = null;
+        let csCurrentImage = null;
+        let csSourceColor = { r: 0, g: 0, b: 0 };
+        const csCanvas = document.getElementById('csCanvas');
+        const csCtx = csCanvas.getContext('2d', { willReadFrequently: true });
+        const csDropArea = document.getElementById('csDropArea');
+        const csFileInput = document.getElementById('csFileInput');
+        const csTolerance = document.getElementById('csTolerance');
+        const csToleranceValue = document.getElementById('csToleranceValue');
+        const csSourcePreview = document.getElementById('csSourcePreview');
+        const csReplaceColor = document.getElementById('csReplaceColor');
+
+        csTolerance.addEventListener('input', (e) => {
+            csToleranceValue.textContent = e.target.value;
+        });
+
+        // Handle Image Upload
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+            csDropArea.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); });
+        });
+        csDropArea.addEventListener('dragover', () => csDropArea.classList.add('drag-over'));
+        csDropArea.addEventListener('dragleave', () => csDropArea.classList.remove('drag-over'));
+        csDropArea.addEventListener('drop', e => {
+            csDropArea.classList.remove('drag-over');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) loadCSImage(file);
+        });
+        csDropArea.addEventListener('click', () => csFileInput.click());
+        csFileInput.addEventListener('change', (e) => {
+            if (e.target.files[0]) loadCSImage(e.target.files[0]);
+        });
+
+        function loadCSImage(file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const img = new Image();
+                img.onload = () => {
+                    csCanvas.width = img.width;
+                    csCanvas.height = img.height;
+                    csCtx.drawImage(img, 0, 0);
+                    csOriginalImageData = csCtx.getImageData(0, 0, csCanvas.width, csCanvas.height);
+                    csCurrentImage = img;
+                    document.getElementById('emptyCanvasMsg').style.display = 'none';
+                    showToast("Image loaded successfully!");
+                };
+                img.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Handle Canvas Click to pick color
+        csCanvas.addEventListener('click', (e) => {
+            if (!csOriginalImageData) return;
+            const rect = csCanvas.getBoundingClientRect();
+            const scaleX = csCanvas.width / rect.width;
+            const scaleY = csCanvas.height / rect.height;
+            const x = Math.floor((e.clientX - rect.left) * scaleX);
+            const y = Math.floor((e.clientY - rect.top) * scaleY);
+            
+            const pixelData = csCtx.getImageData(x, y, 1, 1).data;
+            csSourceColor = { r: pixelData[0], g: pixelData[1], b: pixelData[2] };
+            
+            const hex = rgbToHex(csSourceColor.r, csSourceColor.g, csSourceColor.b);
+            csSourcePreview.style.backgroundColor = hex;
+            csSourcePreview.textContent = hex.toUpperCase();
+        });
+
+        function applyColorSplash() {
+            if (!csOriginalImageData) {
+                showToast("Please upload an image first", "warning");
+                return;
+            }
+            
+            const targetHex = csReplaceColor.value;
+            const targetRgb = hexToRgb(targetHex);
+            const tolerance = parseInt(csTolerance.value);
+            
+            const newImageData = new ImageData(
+                new Uint8ClampedArray(csOriginalImageData.data),
+                csOriginalImageData.width,
+                csOriginalImageData.height
+            );
+            const data = newImageData.data;
+
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                
+                // Calculate distance
+                const distance = Math.sqrt(
+                    Math.pow(r - csSourceColor.r, 2) +
+                    Math.pow(g - csSourceColor.g, 2) +
+                    Math.pow(b - csSourceColor.b, 2)
+                );
+
+                if (distance <= tolerance) {
+                    // Retain some of the original luminosity
+                    const originalLum = (r * 0.299 + g * 0.587 + b * 0.114);
+                    const targetLum = (targetRgb.r * 0.299 + targetRgb.g * 0.587 + targetRgb.b * 0.114);
+                    const ratio = originalLum / (targetLum || 1);
+                    
+                    data[i] = Math.min(255, targetRgb.r * ratio);
+                    data[i + 1] = Math.min(255, targetRgb.g * ratio);
+                    data[i + 2] = Math.min(255, targetRgb.b * ratio);
+                }
+            }
+            
+            csCtx.putImageData(newImageData, 0, 0);
+            showToast("Splash applied!");
+        }
+
+        function resetColorSplashImage() {
+            if (!csOriginalImageData) return;
+            csCtx.putImageData(csOriginalImageData, 0, 0);
+            showToast("Image reset to original");
+        }
+
+        function clearColorSplash() {
+            csCtx.clearRect(0, 0, csCanvas.width, csCanvas.height);
+            csOriginalImageData = null;
+            csCurrentImage = null;
+            csFileInput.value = '';
+            document.getElementById('emptyCanvasMsg').style.display = 'block';
+            csSourceColor = { r: 0, g: 0, b: 0 };
+            csSourcePreview.style.backgroundColor = '#000000';
+            csSourcePreview.textContent = '#000000';
+        }
+
+        function downloadColorSplash() {
+            if (!csOriginalImageData) {
+                showToast("No image to download", "warning");
+                return;
+            }
+            const a = document.createElement('a');
+            a.download = 'colorsplash_edit.png';
+            a.href = csCanvas.toDataURL('image/png');
+            a.click();
+        }
+
+        // Utils
+        function rgbToHex(r, g, b) {
+            return "#" + (1 << 24 | r << 16 | g << 8 | b).toString(16).slice(1);
+        }
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
         // Initialize Stats & State
         updateLevel30Stats();
-
+        
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
             cb.addEventListener('change', saveState);
         });
