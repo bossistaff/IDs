@@ -761,10 +761,45 @@
             pointer-events: none;
         }
 
+        /* Preset Animations */
+        .preset-step {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .preset-step.active-step {
+            transform: scale(1.25);
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+        .preset-step.completed-step {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px rgba(46, 204, 113, 0.4);
+            background-color: rgba(46, 204, 113, 0.1) !important;
+        }
+
+        #presetProgressBar {
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
         /* Responsive */
         @media (max-width: 600px) {
             .container {
                 padding: 20px;
+            }
+
+            .nav-container {
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 8px;
+            }
+            .nav-item {
+                padding: 8px 12px;
+                font-size: 0.85rem;
+                flex: 1 1 calc(33% - 8px);
+                justify-content: center;
+            }
+            #themeToggle {
+                flex: 1 1 100% !important;
+                margin-left: 0 !important;
+                margin-top: 8px;
             }
 
             h1 {
@@ -1003,7 +1038,7 @@
                     style="position: absolute; top: 50%; left: 0; right: 0; height: 2px; background: var(--card-border); z-index: 1;">
                 </div>
                 <div id="presetProgressBar"
-                    style="position: absolute; top: 50%; left: 0; width: 0%; height: 2px; background: var(--primary); z-index: 1; transition: var(--transition);">
+                    style="position: absolute; top: 50%; left: 0; width: 0%; height: 2px; background: var(--primary); z-index: 1; transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 0 10px var(--primary-glow);">
                 </div>
 
                 <!-- Steps -->
@@ -1032,11 +1067,11 @@
                 <select id="presetSelect"
                     style="width: 100%; padding: 16px; border-radius: 12px; border: 1px solid var(--card-border); background: rgba(0,0,0,0.3); color: var(--text-main); font-family: var(--font-main); outline: none; font-size: 1rem; cursor: pointer; transition: var(--transition);">
                     <option value="0">Ready to start (Next: LB Preset)</option>
-                    <option value="1">Sent: LB Preset (Next: Event preset #2)</option>
-                    <option value="2">Sent: Event preset #2 (Next: Patreon Preset #3)</option>
-                    <option value="3">Sent: Patreon Preset #3 (Next: Friends Invite Preset #4)</option>
-                    <option value="4">Sent: Friends Invite Preset #4 (Next: Noble Solos Preset #5)</option>
-                    <option value="5">Sent: Noble Solos Preset #5 (Next: Division 0 Preset #6)</option>
+                    <option value="1">LB Preset (Next: Event preset #2)</option>
+                    <option value="2">Event preset #2 (Next: Patreon Preset #3)</option>
+                    <option value="3">Patreon Preset #3 (Next: Friends Invite Preset #4)</option>
+                    <option value="4">Friends Invite Preset #4 (Next: Noble Solos Preset #5)</option>
+                    <option value="5">Noble Solos Preset #5 (Next: Division 0 Preset #6)</option>
                     <option value="6">✅ All presets finished</option>
                 </select>
             </div>
@@ -1811,13 +1846,16 @@
             for (let i = 0; i < totalSteps; i++) {
                 const stepEl = document.getElementById(`step-${i}`);
                 if (stepEl) {
+                    stepEl.classList.remove('active-step', 'completed-step');
                     if (i < currentIndex) {
                         // Completed
+                        stepEl.classList.add('completed-step');
                         stepEl.style.borderColor = 'var(--success)';
                         stepEl.style.color = 'var(--success)';
                         stepEl.innerHTML = '✓';
                     } else if (i === currentIndex) {
                         // Current
+                        stepEl.classList.add('active-step');
                         stepEl.style.borderColor = 'var(--primary)';
                         stepEl.style.color = 'var(--primary)';
                         stepEl.innerHTML = (i + 1).toString();
